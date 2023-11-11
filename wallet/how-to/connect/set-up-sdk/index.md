@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Set up MetaMask SDK
 
-[MetaMask SDK](../../../concepts/sdk.md) is a library that provides a reliable, secure, and seamless
+[MetaMask SDK](../../../concepts/sdk/index.md) is a library that provides a reliable, secure, and seamless
 connection from your dapp to the MetaMask browser extension and MetaMask Mobile.
 It supports the following dapp platforms:
 
@@ -31,8 +31,8 @@ It supports the following dapp platforms:
     <div class="card__body">
       <ul>
         <li><a href="javascript/react-native">React Native</a></li>
-        <li><a href="mobile/ios">Native iOS</a></li>
-        <li><a href="mobile/android">Native Android</a> (coming soon)</li>
+        <li><a href="mobile/ios">iOS</a></li>
+        <li><a href="mobile/android">Android</a></li>
       </ul>
     </div>
   </div>
@@ -48,8 +48,14 @@ It supports the following dapp platforms:
     </div>
   </div>
 </div>
-
-:::note
-MetaMask SDK uses the [Ethereum provider](../../../reference/provider-api.md) that developers are
-already used to, so existing dapps work out of the box with the SDK.
-:::
+<div class="card margin-bottom--lg">
+  <div class="card__header">
+    <h3>↔️ <a href="../../use-3rd-party-integrations">Third-party integrations</a></h3>
+  </div>
+  <div class="card__body">
+    <ul>
+      <li><a href="../../use-3rd-party-integrations/web3-onboard">Web3-Onboard</a></li>
+      <li>Wagmi (coming soon)</li>
+    </ul>
+  </div>
+</div>

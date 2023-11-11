@@ -1,20 +1,50 @@
 ---
-sidebar_label: Native iOS
+sidebar_label: iOS
 sidebar_position: 1
+toc_max_heading_level: 4
 ---
 
 # Use MetaMask SDK with iOS
 
-You can import [MetaMask SDK](../../../../concepts/sdk.md) into your native iOS dapp to enable your
+Import [MetaMask SDK](../../../../concepts/sdk/index.md) into your native iOS dapp to enable your
 users to easily connect with their MetaMask Mobile wallet.
+
+:::tip Example
+See the [example iOS dapp](https://github.com/MetaMask/metamask-ios-sdk/tree/main/Example) in the
+iOS SDK GitHub repository for advanced use cases.
+:::
 
 ## Prerequisites
 
-An iOS project set up with iOS version 14+.
+- MetaMask Mobile version 7.6.0 or later installed on your target device (that is, a physical device
+  or emulator).
+  You can install MetaMask Mobile from the [App Store](https://apps.apple.com/us/app/metamask-blockchain-wallet/id1438144202)
+  or clone and compile MetaMask Mobile from [source](https://github.com/MetaMask/metamask-mobile)
+  and build to your target device.
+
+- iOS version 14 or later.
+  The SDK supports `ios-arm64` (iOS devices) and `ios-arm64-simulator` (M1 chip simulators).
+  It currently doesn't support `ios-ax86_64-simulator` (Intel chip simulators).
 
 ## Steps
 
 ### 1. Install the SDK
+
+#### CocoaPods
+
+To add the SDK as a CocoaPods dependency to your project, add the following entry to our Podfile:
+
+```text
+pod 'metamask-ios-sdk'
+```
+
+Run the following command:
+
+```bash
+pod install
+```
+
+#### Swift Package Manager
 
 To add the SDK as a Swift Package Manager (SPM) package to your project, in Xcode, select
 **File > Swift Packages > Add Package Dependency**.
@@ -26,27 +56,22 @@ Alternatively, you can add the URL directly in your project's package file:
 dependencies: [
     .package(
         url: "https://github.com/MetaMask/metamask-ios-sdk",
-        from: "0.1.0"
+        from: "0.2.2"
     )
 ]
 ```
-
-:::note
-The SDK supports `ios-arm64` (iOS devices) and `ios-arm64-simulator` (M1 chip simulators).
-It currently doesn't support `ios-ax86_64-simulator` (Intel chip simulators).
-:::
 
 ### 2. Import the SDK
 
 Import the SDK by adding the following line to the top of your project file:
 
-```
+```swift
 import metamask_ios_sdk
 ```
 
 ### 3. Connect your dapp
 
-Connect your dapp by adding the following code to your project file:
+Connect your dapp to MetaMask by adding the following code to your project file:
 
 ```swift
 @ObservedObject var ethereum = MetaMaskSDK.shared.ethereum
@@ -61,9 +86,9 @@ By default, MetaMask logs three SDK events: `connectionRequest`, `connected`, an
 This allows MetaMask to monitor any SDK connection issues.
 To disable this, set `MetaMaskSDK.shared.enableDebug = false` or `ethereum.enableDebug = false`.
 
-### 4. Call provider methods
+### 4. Call methods
 
-You can now call any [provider API method](../../../../reference/provider-api.md).
+You can now call any [JSON-RPC API method](/wallet/reference/eth_subscribe) using `ethereum.request()`.
 
 The SDK uses [Combine](https://developer.apple.com/documentation/combine) to publish Ethereum
 events, so you need to define an `AnyCancellable` storage by adding the following line to your
@@ -72,10 +97,6 @@ project file:
 ```swift
 @State private var cancellables: Set<AnyCancellable> = []
 ```
-
-The following examples use the
-[`window.ethereum.request(args)`](../../../../reference/provider-api.md#windowethereumrequestargs)
-provider API method to call various [RPC API](../../../../reference/rpc-api.md) methods.
 
 #### Example: Get chain ID
 
@@ -133,7 +154,7 @@ ethereum.request(getBalanceRequest)?.sink(receiveCompletion: { completion in
 
 #### Example: Send transaction
 
-The following examples send a transaction by calling
+The following example sends a transaction by calling
 [`eth_sendTransaction`](/wallet/reference/eth_sendTransaction).
 
 <!--tabs-->

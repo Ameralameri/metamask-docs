@@ -5,8 +5,13 @@ sidebar_position: 4
 
 # Use MetaMask SDK with React Native
 
-You can import [MetaMask SDK](../../../../concepts/sdk.md) into your React Native dapp to enable your
+Import [MetaMask SDK](../../../../concepts/sdk/index.md) into your React Native dapp to enable your
 users to easily connect to the MetaMask browser extension and MetaMask Mobile.
+
+:::tip Example
+See the [example React Native dapp](https://github.com/MetaMask/metamask-sdk/tree/main/packages/examples/reactNativeDemo)
+in the JavaScript SDK GitHub repository for advanced use cases.
+:::
 
 ## Prerequisites
 
@@ -15,9 +20,11 @@ users to easily connect to the MetaMask browser extension and MetaMask Mobile.
 - [Yarn](https://yarnpkg.com/getting-started/install) or
   [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-## Install the SDK
+## Steps
 
-:::tip Coming soon
+### 1. Install the SDK
+
+:::info Coming soon
 A `metamask-react-native-sdk` package that simplifies the installation of the SDK for React Native
 dapps is coming soon.
 :::
@@ -88,7 +95,7 @@ Finally, install the necessary pods that come with the libraries:
 cd ios && pod install && cd ..
 ```
 
-## Use the SDK
+### 2. Use the SDK
 
 Import, instantiate, and use the SDK by adding something similar to the following to your project script:
 
@@ -118,6 +125,15 @@ You can configure the SDK using any [options](../../../../reference/sdk-js-optio
 Always call [`eth_requestAccounts`](../../../../reference/rpc-api.md#eth_requestaccounts) using
 [`ethereum.request(args)`](../../../../reference/provider-api.md#windowethereumrequestargs) first,
 since it prompts the installation or connection popup to appear.
+
+:::note Important SDK options
+- Use [`dappMetadata`](../../../../reference/sdk-js-options.md#dappmetadata) to display information
+  about your dapp in the MetaMask connection modal.
+- Use [`modals`](../../../../reference/sdk-js-options.md#modals) to [customize the logic and UI of
+  the displayed modals](../../../display/custom-modals.md).
+- Use [`infuraAPIKey`](../../../../reference/sdk-js-options.md#infuraapikey) to
+  [make read-only RPC requests](../../../use-3rd-party-integrations/js-infura-api.md) from your dapp.
+:::
 
 You can use [EthersJS](https://docs.ethers.io/v5/getting-started/) with your React Native app:
 

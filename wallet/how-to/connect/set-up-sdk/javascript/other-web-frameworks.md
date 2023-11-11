@@ -5,10 +5,15 @@ sidebar_position: 3
 
 # Use MetaMask SDK with other web frameworks
 
-You can import [MetaMask SDK](../../../../concepts/sdk.md) into your web dapp to enable your users to
+Import [MetaMask SDK](../../../../concepts/sdk/index.md) into your web dapp to enable your users to
 easily connect to the MetaMask browser extension and MetaMask Mobile.
 The SDK for other web frameworks has the [same prerequisites](index.md#prerequisites) as for
 standard JavaScript.
+
+:::tip Examples
+See the [example JavaScript dapps](https://github.com/MetaMask/metamask-sdk/tree/main/packages/examples)
+in the JavaScript SDK GitHub repository for advanced use cases.
+:::
 
 ## Steps
 
@@ -43,6 +48,15 @@ const MMSDK = new MetaMaskSDK(options);
 
 const ethereum = MMSDK.getProvider(); // You can also access via window.ethereum
 ```
+
+:::note Important SDK options
+- Use [`dappMetadata`](../../../../reference/sdk-js-options.md#dappmetadata) to display information
+  about your dapp in the MetaMask connection modal.
+- Use [`modals`](../../../../reference/sdk-js-options.md#modals) to [customize the logic and UI of
+  the displayed modals](../../../display/custom-modals.md).
+- Use [`infuraAPIKey`](../../../../reference/sdk-js-options.md#infuraapikey) to
+  [make read-only RPC requests](../../../use-3rd-party-integrations/js-infura-api.md) from your dapp.
+:::
 
 ### 4. Use the SDK
 

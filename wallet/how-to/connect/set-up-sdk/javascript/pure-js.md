@@ -5,9 +5,14 @@ sidebar_position: 2
 
 # Use MetaMask SDK with pure JavaScript
 
-You can import [MetaMask SDK](../../../../concepts/sdk.md) into your pure JavaScript dapp to enable
+Import [MetaMask SDK](../../../../concepts/sdk/index.md) into your pure JavaScript dapp to enable
 your users to easily connect to the MetaMask browser extension and MetaMask Mobile.
 The SDK for pure JavaScript has the [same prerequisites](index.md#prerequisites) as for standard JavaScript.
+
+:::tip Example
+See the [example pure JavaScript dapp](https://github.com/MetaMask/metamask-sdk/tree/main/packages/examples/pure-javascript)
+in the JavaScript SDK GitHub repository for advanced use cases.
+:::
 
 To import, instantiate, and use the SDK, you can insert a script in the head section of your website:
 
@@ -19,11 +24,13 @@ To import, instantiate, and use the SDK, you can insert a script in the head sec
 
 <script>
 
-    const MMSDK = new MetaMaskSDK()
+    const MMSDK = new MetaMaskSDK.MetaMaskSDK()
+    // Because init process of the MetaMaskSDK is async.
+    setTimeout(() => {
+        const ethereum = MMSDK.getProvider() // You can also access via window.ethereum
 
-    const ethereum = MMSDK.getProvider() // You can also access via window.ethereum
-
-    ethereum.request({method: 'eth_requestAccounts'})
+        ethereum.request({ method: 'eth_requestAccounts' })
+    }, 0)
 
 </script>
 
@@ -36,3 +43,12 @@ You can configure the SDK using any [options](../../../../reference/sdk-js-optio
 Always call [`eth_requestAccounts`](../../../../reference/rpc-api.md#eth_requestaccounts) using
 [`ethereum.request(args)`](../../../../reference/provider-api.md#windowethereumrequestargs) first,
 since it prompts the installation or connection popup to appear.
+
+:::note Important SDK options
+- Use [`dappMetadata`](../../../../reference/sdk-js-options.md#dappmetadata) to display information
+  about your dapp in the MetaMask connection modal.
+- Use [`modals`](../../../../reference/sdk-js-options.md#modals) to [customize the logic and UI of
+  the displayed modals](../../../display/custom-modals.md).
+- Use [`infuraAPIKey`](../../../../reference/sdk-js-options.md#infuraapikey) to
+  [make read-only RPC requests](../../../use-3rd-party-integrations/js-infura-api.md) from your dapp.
+:::
