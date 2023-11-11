@@ -7,16 +7,17 @@ title: Introduction
 Integrate your dapp with MetaMask to interact with your dapp users' Ethereum accounts.
 You can enable users to connect to their MetaMask wallets from the following dapp platforms:
 
-- Web dapps on desktop and mobile browsers
-- Desktop and mobile dapps
-- Games built on platforms such as Unity
+- [Web dapps](how-to/connect/set-up-sdk/javascript/index.md) on desktop and mobile browsers
+- [Desktop](how-to/connect/set-up-sdk/javascript/index.md) and
+  [mobile](how-to/connect/set-up-sdk/mobile/index.md) dapps
+- Games built on platforms such as [Unity](how-to/connect/set-up-sdk/gaming/unity.md)
 
 :::tip Integrate using MetaMask SDK
 [Set up MetaMask SDK](how-to/connect/set-up-sdk/index.md) to start integrating your dapp with MetaMask.
-[MetaMask SDK](concepts/sdk.md) is a library that provides a reliable, secure, and seamless
+[MetaMask SDK](concepts/sdk/index.md) is a library that provides a reliable, secure, and seamless
 connection from your dapp to the MetaMask browser extension and MetaMask Mobile.
 
-With the SDK installed, your dapp can use the [MetaMask Ethereum provider API](concepts/provider-api.md)
+With the SDK installed, your dapp can use the [MetaMask Ethereum provider API](concepts/apis.md)
 to request users' Ethereum accounts, read data from blockchains the user is connected to, suggest
 that the user sign messages and transactions, and more.
 :::
@@ -46,7 +47,7 @@ functions, including:
 
 - [Sign data](how-to/sign-data)
 - [Display tokens, contract methods, and icons in MetaMask](how-to/display)
-- [Interact with smart contracts](how-to/interact-with-smart-contracts.md)
+- [Interact with smart contracts](how-to/interact-with-smart-contracts/index.md)
 - [Access a user's MetaMask provider](how-to/access-provider.md)
 
 ## Questions?

@@ -3,6 +3,7 @@
 
 const codeTheme = require("prism-react-renderer/themes/dracula");
 const remarkCodesandbox = require("remark-codesandbox");
+const path = require("path");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -32,7 +33,14 @@ const config = {
   scripts: [
     { src: "https://cmp.osano.com/AzZMxHTbQDOQD8c1J/a2e89f0e-f467-4542-bfea-30ea2c1a6648/osano.js" },
     { src: "https://plausible.io/js/script.js", defer: true, "data-domain": "docs.metamask.io" },
+    { src: "/js/feedback-script.js", defer: true, async: true },
+    { src: "/js/getfeedback.js", defer: true, async: true },
   ],
+
+  markdown: {
+    mermaid: true,
+  },
+  themes: ["@docusaurus/theme-mermaid"],
 
   presets: [
     [
@@ -77,7 +85,38 @@ const config = {
         remarkPlugins: [
           require("remark-docusaurus-tabs"),
         ],
+        admonitions: {
+          tag: ":::",
+          keywords: [
+            "info",
+            "success",
+            "danger",
+            "note",
+            "tip",
+            "warning",
+            "important",
+            "caution",
+            "security",
+            "flaskOnly",
+          ],
+        },
       }),
+    ],
+    [
+      "docusaurus-plugin-typedoc",
+      {
+        entryPoints: ["./external/keyring-api/src/index.ts"],
+        tsconfig: "./external/keyring-api/tsconfig.json",
+        readme: "snaps/reference/keyring-api-index/index.md",
+        out: path.join(__dirname, "snaps/reference/keyring-api"),
+        sidebar: {
+          filteredIds: ["reference/keyring-api/index"],
+        },
+        useCodeBlocks: true,
+        expandObjects: true,
+        parametersFormat: "table",
+        hideGenerator: true,
+      },
     ],
     [
       "@docusaurus/plugin-client-redirects",
@@ -114,7 +153,7 @@ const config = {
           },
           {
             from: "/guide/provider-migration",
-            to: "/wallet/how-to/migrate-api",
+            to: "/wallet/concepts/apis",
           },
           {
             from: "/guide/rpc-api",
@@ -146,15 +185,15 @@ const config = {
           },
           {
             from: "/guide/mobile-getting-started",
-            to: "/wallet/how-to/integrate-with-mobile",
+            to: "/wallet/how-to/connect/set-up-sdk",
           },
           {
             from: "/guide/site-compatibility-checklist",
-            to: "/wallet/how-to/integrate-with-mobile",
+            to: "/wallet/how-to/connect/set-up-sdk",
           },
           {
             from: "/guide/mobile-best-practices",
-            to: "/wallet/how-to/integrate-with-mobile",
+            to: "/wallet/how-to/connect/set-up-sdk",
           },
           {
             from: "/guide/snaps",
@@ -266,7 +305,7 @@ const config = {
           },
           {
             from: "/wallet/how-to/use-mobile",
-            to: "/wallet/how-to/integrate-with-mobile",
+            to: "/wallet/how-to/connect/set-up-sdk",
           },
           {
             from: "/wallet/how-to/use-onboarding-library",
@@ -283,6 +322,26 @@ const config = {
           {
             from: "/wallet/how-to/set-icon",
             to: "/wallet/how-to/display/icon",
+          },
+          {
+            from: "/wallet/concepts/provider-api",
+            to: "/wallet/concepts/apis",
+          },
+          {
+            from: "/wallet/concepts/rpc-api",
+            to: "/wallet/concepts/apis",
+          },
+          {
+            from: "/wallet/how-to/integrate-with-mobile",
+            to: "/wallet/how-to/connect/set-up-sdk",
+          },
+          {
+            from: "/wallet/how-to/migrate-api",
+            to: "/wallet/concepts/apis",
+          },
+          {
+            from: "/sdk",
+            to: "/wallet/how-to/connect/set-up-sdk",
           },
         ].reduce((acc, item) => {
           acc.push(item);
@@ -317,6 +376,10 @@ const config = {
             label: "Wallet",
           },
           {
+            to: "/wallet/how-to/connect/set-up-sdk",
+            label: "SDK",
+          },
+          {
             to: "snaps",
             label: "Snaps",
           },
@@ -345,7 +408,7 @@ const config = {
               },
               {
                 label: "How to guides",
-                to: "/wallet/category/how-to",
+                to: "/wallet/how-to",
               },
               {
                 label: "Concepts",
@@ -432,7 +495,7 @@ const config = {
       },
       prism: {
         theme: codeTheme,
-        additionalLanguages: ["csharp","swift"],
+        additionalLanguages: ["csharp","swift","gradle","kotlin"],
       },
       algolia: {
         // The application ID provided by Algolia
@@ -462,6 +525,20 @@ const config = {
         searchPagePath: "search",
 
         //... other Algolia params
+      },
+      mermaid: {
+        options: {
+          fontFamily: "arial, verdana, sans-serif;",
+          wrap: true,
+          sequence: {
+            diagramMarginX: 25,
+            diagramMarginY: 25,
+          },
+          flowchart: {
+            diagramPadding: 5,
+            nodeSpacing: 75,
+          },
+        },
       },
     }),
 };

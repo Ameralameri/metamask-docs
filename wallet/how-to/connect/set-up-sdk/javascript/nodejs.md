@@ -5,9 +5,14 @@ sidebar_position: 5
 
 # Use MetaMask SDK with Node.js
 
-You can import [MetaMask SDK](../../../../concepts/sdk.md) into your Node.js dapp to enable your users
+Import [MetaMask SDK](../../../../concepts/sdk/index.md) into your Node.js dapp to enable your users
 to easily connect to the MetaMask browser extension and MetaMask Mobile.
 The SDK for Node.js has the [same prerequisites](index.md#prerequisites) as for standard JavaScript.
+
+:::tip Example
+See the [example Node.js dapp](https://github.com/MetaMask/metamask-sdk/tree/main/packages/examples/nodejs)
+in the JavaScript SDK GitHub repository for advanced use cases.
+:::
 
 ## Steps
 
@@ -42,6 +47,15 @@ const MMSDK = new MetaMaskSDK(options);
 
 const ethereum = MMSDK.getProvider(); // You can also access via window.ethereum
 ```
+
+:::note Important SDK options
+- Use [`dappMetadata`](../../../../reference/sdk-js-options.md#dappmetadata) to display information
+  about your dapp in the MetaMask connection modal.
+- Use [`modals`](../../../../reference/sdk-js-options.md#modals) to [customize the logic and UI of
+  the displayed modals](../../../display/custom-modals.md).
+- Use [`infuraAPIKey`](../../../../reference/sdk-js-options.md#infuraapikey) to
+  [make read-only RPC requests](../../../use-3rd-party-integrations/js-infura-api.md) from your dapp.
+:::
 
 ### 4. Use the SDK
 
